@@ -1,1 +1,0 @@
-BareProvidingRun.run()

@@ -97,7 +97,7 @@ public enum BareProviding: MemberMacro {
             )
 
             // Check the property name is as expected.
-            let expansionPropertyName = expansionPropertyDeclSyntax.bindings.first?.as(PatternBindingSyntax.self)?.pattern.as(IdentifierPatternSyntax.self)?.identifier.text
+            let expansionPropertyName = expansionPropertyDeclSyntax.bindings.first?.pattern.as(IdentifierPatternSyntax.self)?.identifier.text
             guard expansionPropertyName == propertyName else {
                 throw Diagnostic.invalidArgument("Invalid type name: '\(typeName)'.").error(at: node)
             }
