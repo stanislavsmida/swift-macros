@@ -30,7 +30,7 @@ final class BareProvidingExpansionTests: XCTestCase {
                 case b(B, String)
                 case cA
 
-                enum Bare: Hashable {
+                enum Bare: CaseIterable, Hashable {
                     case a
                     case b
                     case cA
@@ -68,7 +68,7 @@ final class BareProvidingExpansionTests: XCTestCase {
                 case d, e(Bool)
                 case f
 
-                enum Bare: Hashable {
+                enum Bare: CaseIterable, Hashable {
                     case a
                     case b
                     case c
@@ -120,7 +120,7 @@ final class BareProvidingExpansionTests: XCTestCase {
                 /// intervening trivia :-)
                 case b(B, String)
 
-                public enum Foo: Hashable {
+                public enum Foo: CaseIterable, Hashable {
                     case a
                     case b
                 }
@@ -155,7 +155,7 @@ final class BareProvidingExpansionTests: XCTestCase {
                 case b(B, String)
                 case cA
 
-                fileprivate enum Bare: Hashable {
+                fileprivate enum Bare: CaseIterable, Hashable {
                     case a
                     case b
                     case cA
@@ -189,7 +189,7 @@ final class BareProvidingExpansionTests: XCTestCase {
             public enum E {
                 case a(A)
 
-                fileprivate enum Bare: Hashable {
+                fileprivate enum Bare: CaseIterable, Hashable {
                     case a
                 }
 
@@ -217,7 +217,7 @@ final class BareProvidingExpansionTests: XCTestCase {
             private enum E {
                 case a(A)
 
-                fileprivate enum Bare: Hashable {
+                fileprivate enum Bare: CaseIterable, Hashable {
                     case a
                 }
 
@@ -245,7 +245,7 @@ final class BareProvidingExpansionTests: XCTestCase {
             enum E {
                 case a(A)
 
-                enum Baz: Hashable {
+                enum Baz: CaseIterable, Hashable {
                     case a
                 }
 
@@ -331,7 +331,9 @@ final class BareProvidingTests: XCTestCase {
 
     func testBareProviding_whenComparingAnchorWithBareCounterpart_shouldEqual() {
         XCTAssertEqual(E.a("hello").bare, .a)
+        XCTAssertEqual(E.Bare.allCases, [.a, .b, .c])
         XCTAssertEqual(Foo.x("dd").bar, .x)
+        XCTAssertEqual(Foo.Bar.allCases, [.x, .y])
     }
 }
 

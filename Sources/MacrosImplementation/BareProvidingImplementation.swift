@@ -23,7 +23,7 @@ import SwiftSyntaxMacros
 ///         case a(String)
 ///         case b(String, Int)
 ///
-///         enum Bare: Hashable {
+///         enum Bare: CaseIterable, Hashable {
 ///             case a
 ///             case b
 ///         }
@@ -72,7 +72,7 @@ public enum BareProviding: MemberMacro {
             let typeName = try attribute.stringLiteralArgument(with: "typeName") ?? "Bare"
 
             let expansionEnumDecl = try EnumDeclSyntax(
-                "\(raw: memberAccessModifierWithSpaceAfter)enum \(raw: typeName): Hashable"
+                "\(raw: memberAccessModifierWithSpaceAfter)enum \(raw: typeName): CaseIterable, Hashable"
             ) {
                 for caseElement in caseElements {
                     try EnumCaseDeclSyntax("case \(caseElement.name)")
