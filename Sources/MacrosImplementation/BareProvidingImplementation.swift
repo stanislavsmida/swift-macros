@@ -75,7 +75,7 @@ public enum BareProviding: MemberMacro {
                 "\(raw: memberAccessModifierWithSpaceAfter)enum \(raw: typeName): CaseIterable, Hashable"
             ) {
                 for caseElement in caseElements {
-                    try EnumCaseDeclSyntax("case \(caseElement.name)")
+                    try EnumCaseDeclSyntax("case \(caseElement.name.trimmed)")
                 }
             }
 
@@ -90,7 +90,7 @@ public enum BareProviding: MemberMacro {
                 accessor: {
                     try SwitchExprSyntax("switch self") {
                         for caseElement in caseElements {
-                            SwitchCaseSyntax("case .\(caseElement.name): .\(caseElement.name)")
+                            SwitchCaseSyntax("case .\(caseElement.name.trimmed): .\(caseElement.name.trimmed)")
                         }
                     }
                 }

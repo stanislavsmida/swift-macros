@@ -57,16 +57,20 @@ final class BareProvidingExpansionTests: XCTestCase {
             """
             @BareProviding
             enum E {
-                case a(A), b(B, String), c
+                // don't expand this comment
+                case a(A), b(B, String), c // don't expand this comment
                 case d, e(Bool)
-                case f
+                /// don't expand this comment
+                case f // don't expand this comment
             }
             """,
             expandedSource: """
             enum E {
-                case a(A), b(B, String), c
+                // don't expand this comment
+                case a(A), b(B, String), c // don't expand this comment
                 case d, e(Bool)
-                case f
+                /// don't expand this comment
+                case f // don't expand this comment
 
                 enum Bare: CaseIterable, Hashable {
                     case a
@@ -331,7 +335,7 @@ final class BareProvidingTests: XCTestCase {
 
     func testBareProviding_whenComparingAnchorWithBareCounterpart_shouldEqual() {
         XCTAssertEqual(E.a("hello").bare, .a)
-        XCTAssertEqual(E.Bare.allCases, [.a, .b, .c])
+        XCTAssertEqual(E.Bare.allCases, [.a, .b, .d, .c])
         XCTAssertEqual(Foo.x("dd").bar, .x)
         XCTAssertEqual(Foo.Bar.allCases, [.x, .y])
     }
@@ -340,8 +344,8 @@ final class BareProvidingTests: XCTestCase {
 @BareProviding
 private enum E {
     case a(String)
-    case b(String, Int)
-    case c
+    case b(String, Int), /* don't expand this comment */ d(String) // don't expand this comment
+    case c // don't expand this comment
 }
 
 @BareProviding(accessModifier: TypeAccessModifier.fileprivate, typeName: "Bar")
