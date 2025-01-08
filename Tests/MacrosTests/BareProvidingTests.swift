@@ -30,7 +30,7 @@ final class BareProvidingExpansionTests: XCTestCase {
                 case b(B, String)
                 case cA
 
-                enum Bare: CaseIterable, Hashable {
+                enum Bare: CaseIterable, Codable, Hashable, Sendable {
                     case a
                     case b
                     case cA
@@ -72,7 +72,7 @@ final class BareProvidingExpansionTests: XCTestCase {
                 /// don't expand this comment
                 case f // don't expand this comment
 
-                enum Bare: CaseIterable, Hashable {
+                enum Bare: CaseIterable, Codable, Hashable, Sendable {
                     case a
                     case b
                     case c
@@ -124,7 +124,7 @@ final class BareProvidingExpansionTests: XCTestCase {
                 /// intervening trivia :-)
                 case b(B, String)
 
-                public enum Foo: CaseIterable, Hashable {
+                public enum Foo: CaseIterable, Codable, Hashable, Sendable {
                     case a
                     case b
                 }
@@ -159,7 +159,7 @@ final class BareProvidingExpansionTests: XCTestCase {
                 case b(B, String)
                 case cA
 
-                fileprivate enum Bare: CaseIterable, Hashable {
+                fileprivate enum Bare: CaseIterable, Codable, Hashable, Sendable {
                     case a
                     case b
                     case cA
@@ -193,7 +193,7 @@ final class BareProvidingExpansionTests: XCTestCase {
             public enum E {
                 case a(A)
 
-                fileprivate enum Bare: CaseIterable, Hashable {
+                fileprivate enum Bare: CaseIterable, Codable, Hashable, Sendable {
                     case a
                 }
 
@@ -221,7 +221,7 @@ final class BareProvidingExpansionTests: XCTestCase {
             private enum E {
                 case a(A)
 
-                fileprivate enum Bare: CaseIterable, Hashable {
+                fileprivate enum Bare: CaseIterable, Codable, Hashable, Sendable {
                     case a
                 }
 
@@ -249,7 +249,7 @@ final class BareProvidingExpansionTests: XCTestCase {
             enum E {
                 case a(A)
 
-                enum Baz: CaseIterable, Hashable {
+                enum Baz: CaseIterable, Codable, Hashable, Sendable {
                     case a
                 }
 
@@ -339,6 +339,14 @@ final class BareProvidingTests: XCTestCase {
         XCTAssertEqual(Foo.x("dd").bar, .x)
         XCTAssertEqual(Foo.Bar.allCases, [.x, .y])
     }
+
+    func testCoding() throws {
+        let bareCase = E.Bare.a
+        let encoded = try JSONEncoder().encode(bareCase)
+        let decoded = try JSONDecoder().decode(E.Bare.self, from: encoded)
+        XCTAssertEqual(decoded, bareCase)
+    }
+
 }
 
 @BareProviding

@@ -72,7 +72,7 @@ public enum BareProviding: MemberMacro {
             let typeName = try attribute.stringLiteralArgument(with: "typeName") ?? "Bare"
 
             let expansionEnumDecl = try EnumDeclSyntax(
-                "\(raw: memberAccessModifierWithSpaceAfter)enum \(raw: typeName): CaseIterable, Hashable"
+                "\(raw: memberAccessModifierWithSpaceAfter)enum \(raw: typeName): CaseIterable, Codable, Hashable, Sendable"
             ) {
                 for caseElement in caseElements {
                     try EnumCaseDeclSyntax("case \(caseElement.name.trimmed)")
