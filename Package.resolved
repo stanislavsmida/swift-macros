@@ -1,13 +1,13 @@
 {
-  "originHash" : "e0c5bd1270146c6ecb296b038a335e2455f4b8c1cc96ee5860fe2da5aea723af",
+  "originHash" : "f01de60dea587b952c05a936bdc2c39e8a61aacc8fed183e86511c259da5587a",
   "pins" : [
     {
       "identity" : "swift-extras",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/stansmida/swift-extras.git",
       "state" : {
-        "revision" : "beced210c6290dcff1c0aefbce2ea572c4691e13",
-        "version" : "0.7.4"
+        "revision" : "fec52ce3f4c43cdbd5fde6b13a9535a950880ad3",
+        "version" : "0.7.5"
       }
     },
     {
@@ -15,8 +15,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-syntax.git",
       "state" : {
-        "revision" : "fa8f95c2d536d6620cc2f504ebe8a6167c9fc2dd",
-        "version" : "510.0.1"
+        "revision" : "0687f71944021d616d34d922343dcef086855920",
+        "version" : "600.0.1"
       }
     },
     {
@@ -24,8 +24,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/stansmida/swift-syntax-extras.git",
       "state" : {
-        "revision" : "fb91a724e613088ac028e03dce449a72e3578ff6",
-        "version" : "0.5.1"
+        "revision" : "7f42cd8be9f1433a9bfd5b2b44effe1cd8a1f02c",
+        "version" : "0.6.0"
       }
     }
   ],
